@@ -23,6 +23,7 @@
     </screenshot>
   </screenshots>
   <url type="homepage">https://wiki.srb2.org/wiki/SRB2Kart</url>
+  <developer_name>Kart Krew team</developer_name>
   <provides>
     <binary>srb2kart</binary>
   </provides>
