@@ -48,8 +48,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/STJr/Kart-Public
-        tag: v1.2
-        commit: f856f18233da492c9446f70a2856e2e178ddfd1a
+        commit: b0f89a5dba8fbf1d11f2e86820e32fefd5464f1b
       - type: script
         commands:
           - export SRB2WADDIR=/app/extra
@@ -59,9 +58,6 @@ modules:
         path: org.srb2.SRB2Kart.desktop
       - type: file
         path: org.srb2.SRB2Kart.metainfo.xml
-      - type: patch
-        path: r_opengl.patch
-        strip-components: 0
 
   - name: srb2kart-assets
     buildsystem: simple
