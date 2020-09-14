@@ -48,6 +48,56 @@
     <binary>srb2kart</binary>
   </provides>
   <releases>
+    <release version="1.3" date="2020-09-14" >
+      <description>
+        <p>Changes to online play</p>
+        <ul>
+          <li>Fixed joinbug and chatbug. Those are bugs where a player will try to join, but appear to be joining and immediately leaving many times to anyone in the server. Or when at some point you can no longer send chat messages, change your name/character etc. while playing in a server. Basically, netplay is more stable now.</li>
+          <li>Fixed online sync issues with Rocket Sneakers, mines and the Kitchen Sink</li>
+          <li>Added support for new HTTP based master server technology. SRB2Kart's Master Server is now separate from SRB2's, and will hosted on kartkrew.org.</li>
+          <li>Overall improved the server connection screen. There are now prompts for downloading files and waiting to join a server which is full. There is also a total progress meter for downloading files.</li>
+          <li>Clients now choose a random port when connecting to servers. -port 0 should no longer be needed.</li>
+          <li>Up to 126 servers may now appear in the server list</li>
+          <li>Caret color codes may be used in server names</li>
+          <li>Players may now change their name no more than five times per minute while playing online</li>
+        </ul>
+        <p>Lua scripting changes</p>
+        <ul>
+          <li>Use player.ping to access the player's latency in milliseconds</li>
+          <li>Fixed displayplayers.iterate crashing in replays</li>
+          <li>Added replayplayback, which tells whether you are in a replay</li>
+          <li>Added file I/O support</li>
+          <li>Fixed sound volume not working on sounds that have an origin</li>
+        </ul>
+        <p>OpenGL changes</p>
+        <ul>
+          <li>Fixed flat rotation being slightly off</li>
+          <li>Fixed the game sometimes crashing on startup due to ogllog.txt</li>
+          <li>Fixed encore colormaps being slightly off</li>
+        </ul>
+        <p>Miscellaneous changes</p>
+        <ul>
+          <li>Added support for Discord Rich Presence. Some details of the game, such as what map you're playing, or how many players are on a server will be displayed on your profile. You may also invite others to join your game. This works even if you are not the server host, but just an ordinary player! Others may ask to join you too. You'll receive a notification in game if they do, and you can choose to accept or deny it.</li>
+          <li>Adjusted item odds in Battle mode. Orbinauts, Jawz, Invincibility and Grow are far more likely to appear. Bananas and Sneakers much less. Also removed item odds scaling with bumper count. Now everyone is on an equal playing field.</li>
+          <li>The last used renderer is now saved. This means you only need to start the game with OpenGL once and the game will remember it thereafter.</li>
+          <li>Fixed a minor bug with aliases in the console</li>
+          <li>Fixed first person camera breaking in replays</li>
+          <li>Fixed clearbans not clearing ban.txt</li>
+          <li>Fixed Record Attack ghosts potentially crashing if recorded with Lua added</li>
+          <li>SPB is no longer forced to appear in a 1v1</li>
+          <li>Fixed Thunder Shield item odds</li>
+          <li>Fixed a memory leak with pk3 files</li>
+          <li>Fixed SPB, Shrink and Hyudoro items appearing only once per race</li>
+          <li>Made looking back instantaneous</li>
+          <li>Fixed Toad</li>
+          <li>Fixed a memory leak if replay is not saved</li>
+          <li>You can no longer "line ride" offroad</li>
+          <li>Increased rarity of a previously played map showing up again in vote</li>
+          <li>Added join, leave and kick sound effects</li>
+          <li>Updated bonuschars with brand new Sakura sprites!</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.2" date="2020-05-12" />
   </releases>
   <content_rating type="oars-1.1">
