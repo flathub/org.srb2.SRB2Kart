@@ -48,7 +48,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/STJr/Kart-Public
-        commit: b0f89a5dba8fbf1d11f2e86820e32fefd5464f1b
+        tag: v1.3
       - type: script
         commands:
           - export SRB2WADDIR=/app/extra
@@ -66,9 +66,9 @@ modules:
     sources:
       - type: extra-data
         filename: Installer.exe
-        url: https://github.com/STJr/Kart-Public/releases/download/v1.2/srb2kart-v12-Installer.exe
-        sha256: 57284de43a2889c0a60ce8fee77df22095fcd31beef6130cbeed1ead0bebbfec
-        size: 200732615
+        url: https://github.com/STJr/Kart-Public/releases/download/v1.3/srb2kart-v13-Installer.exe
+        sha256: 95422bc16c58c50cdde8a5860e2d4238c1581f6c831a0e22fe40582b6cc8c2fd
+        size: 212937741
       - type: script
         commands:
           - 7z x Installer.exe "*.kart" "*.srb" "mdls.dat" "mdls/*" > /dev/null && rm Installer.exe
