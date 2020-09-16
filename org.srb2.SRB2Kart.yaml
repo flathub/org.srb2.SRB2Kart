@@ -68,7 +68,7 @@ modules:
         filename: Installer.exe
         url: https://github.com/STJr/Kart-Public/releases/download/v1.3/srb2kart-v13-Installer.exe
         sha256: 95422bc16c58c50cdde8a5860e2d4238c1581f6c831a0e22fe40582b6cc8c2fd
-        size: 212937741
+        size: 233037066 
       - type: script
         commands:
           - 7z x Installer.exe "*.kart" "*.srb" "mdls.dat" "mdls/*" > /dev/null && rm Installer.exe
