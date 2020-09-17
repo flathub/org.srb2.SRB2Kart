@@ -11,6 +11,7 @@ finish-args:
   - --socket=wayland
   - --device=all
   - --persist=.srb2kart
+  - --filesystem=xdg-run/app/com.discordapp.Discord:create
 modules:
   - shared-modules/glu/glu-9.json
 
@@ -24,6 +25,28 @@ modules:
       - type: archive
         url: https://bitbucket.org/mpyne/game-music-emu/downloads/game-music-emu-0.6.3.tar.xz
         sha256: aba34e53ef0ec6a34b58b84e28bf8cfbccee6585cebca25333604c35db3e051d
+
+  - name: rapidjson
+    buildsystem: cmake-ninja
+    config-opts:
+    - -DRAPIDJSON_BUILD_DOC=OFF
+    - -DRAPIDJSON_BUILD_EXAMPLES=OFF
+    - -DRAPIDJSON_BUILD_TESTS=OFF
+    - -DRAPIDJSON_BUILD_THIRDPARTY_GTEST=OFF
+    sources:
+      - type: git
+        url: https://github.com/Tencent/rapidjson.git
+        tag: v1.1.0
+
+  - name: discord-rpc
+    buildsystem: cmake-ninja
+    config-opts:
+      - -DBUILD_SHARED_LIBS=ON
+      - -DBUILD_EXAMPLES=OFF
+    sources:
+      - type: git
+        url: https://github.com/discord/discord-rpc.git
+        commit: e4c0c569eca9b888010ad904d3633e782f5cd680
 
   - name: srb2kart
     buildsystem: simple
@@ -39,7 +62,7 @@ modules:
           env:
             ARCH_MAKE_ARGS: 'LINUX64=1 X86_64=1'
     build-commands:
-      - make -C src -j $FLATPAK_BUILDER_N_JOBS NOUPX=1 SDL=1 $ARCH_MAKE_ARGS
+      - make -C src -j $FLATPAK_BUILDER_N_JOBS NOUPX=1 SDL=1 HAVE_DISCORDRPC=1 $ARCH_MAKE_ARGS
       - install -D -m 755 -t $FLATPAK_DEST/bin bin/Linux*/Release/lsdl2srb2kart
       - install -D -m 644 srb2.png $FLATPAK_DEST/share/icons/hicolor/256x256/apps/$FLATPAK_ID.png
       - install -D -m 755 srb2kart.sh $FLATPAK_DEST/bin/srb2kart
@@ -51,6 +74,9 @@ modules:
         tag: v1.3
       - type: script
         commands:
+          - for i in {0..9}; do
+          - test -S $XDG_RUNTIME_DIR/discord-ipc-$i || ln -sf {app/com.discordapp.Discord,$XDG_RUNTIME_DIR}/discord-ipc-$i;
+          - done
           - export SRB2WADDIR=/app/extra
           - lsdl2srb2kart "$@"
         dest-filename: srb2kart.sh
