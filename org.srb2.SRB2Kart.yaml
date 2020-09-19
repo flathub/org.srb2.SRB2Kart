@@ -12,19 +12,15 @@ finish-args:
   - --device=all
   - --persist=.srb2kart
   - --filesystem=xdg-run/app/com.discordapp.Discord:create
-cleanup:
-  - /include
-  - /lib/pkgconfig
-  - /lib/cmake
-  - /man
-  - /share/doc
 modules:
   - shared-modules/glu/glu-9.json
 
   - name: game-music-emu
     buildsystem: cmake-ninja
     cleanup:
+      - /include
       - /lib/*.so
+      - /lib/pkgconfig
     sources:
       - type: archive
         url: https://bitbucket.org/mpyne/game-music-emu/downloads/game-music-emu-0.6.3.tar.xz
@@ -37,6 +33,11 @@ modules:
     - -DRAPIDJSON_BUILD_EXAMPLES=OFF
     - -DRAPIDJSON_BUILD_TESTS=OFF
     - -DRAPIDJSON_BUILD_THIRDPARTY_GTEST=OFF
+    cleanup:
+      - /include
+      - /lib/cmake
+      - /lib/pkgconfig
+      - /share/doc
     sources:
       - type: git
         url: https://github.com/Tencent/rapidjson.git
@@ -47,6 +48,8 @@ modules:
     config-opts:
       - -DBUILD_SHARED_LIBS=ON
       - -DBUILD_EXAMPLES=OFF
+    cleanup:
+      - /include
     sources:
       - type: git
         url: https://github.com/discord/discord-rpc.git
@@ -108,6 +111,9 @@ modules:
         make-args:
           - 7z
         no-autogen: true
+        cleanup:
+          - /man
+          - /share/doc
         sources:
           - type: archive
             url: https://sourceforge.net/projects/p7zip/files/p7zip/16.02/p7zip_16.02_src_all.tar.bz2
