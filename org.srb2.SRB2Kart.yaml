@@ -1,6 +1,6 @@
 app-id: org.srb2.SRB2Kart
 runtime: org.freedesktop.Platform
-runtime-version: '19.08'
+runtime-version: '20.08'
 sdk: org.freedesktop.Sdk
 command: srb2kart
 finish-args:
@@ -118,6 +118,8 @@ modules:
           - type: archive
             url: https://sourceforge.net/projects/p7zip/files/p7zip/16.02/p7zip_16.02_src_all.tar.bz2
             sha256: 5eb20ac0e2944f6cb9c2d51dd6c4518941c185347d4089ea89087ffdd6e2341f
+          - type: patch
+            path: p7zip.patch
           - type: shell
             commands:
             - sed -i 's|/usr/local|/app|g' makefile.common
