@@ -45,13 +45,13 @@ modules:
       - /share/doc
     sources:
       - type: git
-        url: https://github.com/Tencent/rapidjson.git
-        tag: v1.1.0
+        url: https://github.com/Tencent/rapidjson/archive/refs/tags/v1.1.0.tar.gz
+        sha256: bf7ced29704a1e696fbccf2a2b4ea068e7774fa37f6d7dd4039d0787f8bed98e
         x-checker-data:
           type: anitya
           project-id: 7422
           stable-only: true
-          tag-template: v$version
+          url-template: https://github.com/Tencent/rapidjson/archive/refs/tags/v$version.tar.gz
 
   - name: discord-rpc
     buildsystem: cmake-ninja
