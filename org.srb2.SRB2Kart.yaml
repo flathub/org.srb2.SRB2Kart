@@ -47,6 +47,11 @@ modules:
       - type: git
         url: https://github.com/Tencent/rapidjson.git
         tag: v1.1.0
+        x-checker-data:
+          type: anitya
+          project-id: 7422
+          stable-only: true
+          tag-template: v$version
 
   - name: discord-rpc
     buildsystem: cmake-ninja
