@@ -63,7 +63,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/discord/discord-rpc.git
-        commit: e4c0c569eca9b888010ad904d3633e782f5cd680
+        tag: v3.4.0
+        commit: e6390c8c4190b59f1cc98bcec688e0037b84974d
 
   - name: srb2kart
     buildsystem: simple
