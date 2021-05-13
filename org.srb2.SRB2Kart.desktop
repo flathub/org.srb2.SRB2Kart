@@ -8,3 +8,8 @@ Exec=srb2kart
 Icon=org.srb2.SRB2Kart
 Terminal=false
 Categories=Game;
+Actions=OpenGL;
+
+[Desktop Action OpenGL]
+Name=OpenGL
+Exec=srb2kart -opengl
