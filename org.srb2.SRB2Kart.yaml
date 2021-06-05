@@ -34,10 +34,10 @@ modules:
   - name: rapidjson
     buildsystem: cmake-ninja
     config-opts:
-    - -DRAPIDJSON_BUILD_DOC=OFF
-    - -DRAPIDJSON_BUILD_EXAMPLES=OFF
-    - -DRAPIDJSON_BUILD_TESTS=OFF
-    - -DRAPIDJSON_BUILD_THIRDPARTY_GTEST=OFF
+      - -DRAPIDJSON_BUILD_DOC=OFF
+      - -DRAPIDJSON_BUILD_EXAMPLES=OFF
+      - -DRAPIDJSON_BUILD_TESTS=OFF
+      - -DRAPIDJSON_BUILD_THIRDPARTY_GTEST=OFF
     cleanup:
       - /include
       - /lib/cmake
@@ -71,13 +71,13 @@ modules:
       arch:
         arm:
           env:
-            ARCH_MAKE_ARGS: 'LINUX=1 NONX86=1'
+            ARCH_MAKE_ARGS: LINUX=1 NONX86=1
         aarch64:
           env:
-            ARCH_MAKE_ARGS: 'LINUX64=1'
+            ARCH_MAKE_ARGS: LINUX64=1
         x86_64:
           env:
-            ARCH_MAKE_ARGS: 'LINUX64=1 X86_64=1'
+            ARCH_MAKE_ARGS: LINUX64=1 X86_64=1
     build-commands:
       - make -C src -j $FLATPAK_BUILDER_N_JOBS NOUPX=1 SDL=1 HAVE_DISCORDRPC=1 $ARCH_MAKE_ARGS
       - install -D -m 755 -t $FLATPAK_DEST/bin bin/Linux*/Release/lsdl2srb2kart
@@ -111,10 +111,11 @@ modules:
         filename: Installer.exe
         url: https://github.com/STJr/Kart-Public/releases/download/v1.3/srb2kart-v13-Installer.exe
         sha256: 9a198781cc1f1df2b0a3b6dcf6677c0a8663d0dc182d20cd6bae1bc78f37632e
-        size: 233037066 
+        size: 233037066
       - type: script
         commands:
-          - 7z x Installer.exe "*.kart" "*.srb" "mdls.dat" "mdls/*" > /dev/null && rm Installer.exe
+          - 7z x Installer.exe "*.kart" "*.srb" "mdls.dat" "mdls/*" > /dev/null &&
+            rm Installer.exe
         dest-filename: apply_extra
     modules:
       - name: p7zip
@@ -127,9 +128,9 @@ modules:
         sources:
           - type: archive
             url: https://sourceforge.net/projects/p7zip/files/p7zip/16.02/p7zip_16.02_src_all.tar.bz2
-            sha256: 5eb20ac0e2944f6cb9c2d51dd6c4518941c185347d4089ea89087ffdd6e2341f
+            sha256: 251a85b3bac687974f360d3796048c20ded3bf0bd69e0d1cfd1db23d013f89ed
           - type: patch
             path: p7zip.patch
           - type: shell
             commands:
-            - sed -i 's|/usr/local|/app|g' makefile.common
+              - sed -i 's|/usr/local|/app|g' makefile.common
