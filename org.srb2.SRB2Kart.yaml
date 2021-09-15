@@ -89,7 +89,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/STJr/Kart-Public
-        tag: v1.3
+        commit: e66eaf001ea64ad016c2591e2b376a4cf07eb8cc
       - type: script
         commands:
           - for i in {0..9}; do
