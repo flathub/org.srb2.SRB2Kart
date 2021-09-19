@@ -87,9 +87,14 @@ modules:
       - install -D -m 644 -t $FLATPAK_DEST/share/applications $FLATPAK_ID.desktop
       - install -D -m 644 -t $FLATPAK_DEST/share/metainfo $FLATPAK_ID.metainfo.xml
     sources:
-      - type: git
-        url: https://github.com/STJr/Kart-Public
-        tag: v1.3
+      - type: archive
+        url: https://github.com/STJr/Kart-Public/archive/refs/tags/v1.3.tar.gz
+        sha256: 274fa146202e9cb9791e05ae4ca947de8bf8a4c117dd1422719f6bdeed629dda
+        x-checker-data:
+          type: anitya
+          project-id: 18640
+          stable-only: true
+          url-template: https://github.com/STJr/Kart-Public/archive/refs/tags/v$version.tar.gz
       - type: script
         commands:
           - for i in {0..9}; do
