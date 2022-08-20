@@ -35,10 +35,10 @@ modules:
   - name: rapidjson
     buildsystem: cmake-ninja
     config-opts:
-    - -DRAPIDJSON_BUILD_DOC=OFF
-    - -DRAPIDJSON_BUILD_EXAMPLES=OFF
-    - -DRAPIDJSON_BUILD_TESTS=OFF
-    - -DRAPIDJSON_BUILD_THIRDPARTY_GTEST=OFF
+      - -DRAPIDJSON_BUILD_DOC=OFF
+      - -DRAPIDJSON_BUILD_EXAMPLES=OFF
+      - -DRAPIDJSON_BUILD_TESTS=OFF
+      - -DRAPIDJSON_BUILD_THIRDPARTY_GTEST=OFF
     cleanup:
       - /include
       - /lib/cmake
@@ -72,13 +72,13 @@ modules:
       arch:
         arm:
           env:
-            ARCH_MAKE_ARGS: 'LINUX=1 NONX86=1'
+            ARCH_MAKE_ARGS: LINUX=1 NONX86=1
         aarch64:
           env:
-            ARCH_MAKE_ARGS: 'LINUX64=1'
+            ARCH_MAKE_ARGS: LINUX64=1
         x86_64:
           env:
-            ARCH_MAKE_ARGS: 'LINUX64=1 X86_64=1'
+            ARCH_MAKE_ARGS: LINUX64=1 X86_64=1
     build-commands:
       - make -C src -j $FLATPAK_BUILDER_N_JOBS NOUPX=1 SDL=1 HAVE_DISCORDRPC=1 $ARCH_MAKE_ARGS
       - install -D -m 755 -t $FLATPAK_DEST/bin bin/Linux*/Release/lsdl2srb2kart
@@ -88,8 +88,8 @@ modules:
       - install -D -m 644 -t $FLATPAK_DEST/share/metainfo $FLATPAK_ID.metainfo.xml
     sources:
       - type: archive
-        url: https://github.com/STJr/Kart-Public/archive/refs/tags/v1.5.tar.gz
-        sha256: a3486c80603a11c3cc696f1f03c9ce0c7d9cfda1879c4e5e182ae481449c70c8
+        url: https://github.com/STJr/Kart-Public/archive/refs/tags/v1.4.tar.gz
+        sha256: 15be7d109b5de693330db1d804b9459da0ff7ad6ade99c886329b0de71c79abc
         x-checker-data:
           type: anitya
           project-id: 18640
@@ -117,7 +117,7 @@ modules:
         filename: Data.zip
         url: https://github.com/STJr/Kart-Public/releases/download/v1.5/AssetsLinuxOnly.zip
         sha256: 0381e4c670c64080ae72c2721d761ce460916cc3f4338363adea218453906ab0
-        size: 221723531 
+        size: 221723531
       - type: script
         commands:
           - unzip Data.zip *.kart srb2.srb mdls* > /dev/null
