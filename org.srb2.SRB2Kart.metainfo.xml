@@ -48,6 +48,9 @@
     <binary>srb2kart</binary>
   </provides>
   <releases>
+    <release version="1.4" date="2022-08-19">
+      <url>https://github.com/STJr/Kart-Public/releases/tag/v1.4</url>
+    </release>
     <release version="1.3" date="2020-09-14">
       <url>https://github.com/STJr/Kart-Public/releases/tag/v1.3</url>
     </release>
