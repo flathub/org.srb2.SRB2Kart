@@ -120,6 +120,6 @@ modules:
         size: 215764906 
       - type: script
         commands:
-          - unzip Installer.exe *.kart srb2.srb mdls* > /dev/null
+          - unzip Data.zip *.kart srb2.srb mdls* > /dev/null
           - rm Data.zip
         dest-filename: apply_extra
