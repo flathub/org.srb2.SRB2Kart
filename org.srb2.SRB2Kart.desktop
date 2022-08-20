@@ -15,5 +15,5 @@ Name=OpenGL
 Exec=srb2kart -opengl
 
 [Desktop Action Software]
-Name=Solfware
+Name=Software
 Exec=srb2kart -software
