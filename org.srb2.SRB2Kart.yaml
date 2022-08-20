@@ -115,9 +115,9 @@ modules:
     sources:
       - type: extra-data
         filename: Data.zip
-        url: https://github.com/STJr/Kart-Public/releases/download/v1.4/srb2kart-v14-Data.zip
-        sha256: 4a5c1b697377ecbf5c2ad6d4e8c02f8513f5c2b75324316ec8f467f5069cd4ae
-        size: 221723529 
+        url: https://github.com/STJr/Kart-Public/releases/download/v1.5/AssetsLinuxOnly.zip
+        sha256: 0381e4c670c64080ae72c2721d761ce460916cc3f4338363adea218453906ab0
+        size: 221723531 
       - type: script
         commands:
           - unzip Data.zip *.kart srb2.srb mdls* > /dev/null
