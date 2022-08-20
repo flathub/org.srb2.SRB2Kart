@@ -114,12 +114,12 @@ modules:
       - install -t $FLATPAK_DEST/bin apply_extra
     sources:
       - type: extra-data
-        filename: Installer.exe
-        url: https://github.com/STJr/Kart-Public/releases/download/v1.4/srb2kart-v14-Installer.exe
-        sha256: 06131b83632136a19b0a345bc456841afda63b1b2ce18ee084bc1e8aa07428bf
-        size: 205621384 
+        filename: Data.zip
+        url: https://github.com/STJr/Kart-Public/releases/download/v1.4/srb2kart-v14-Data.zip
+        sha256: 82a4a68fa2ebc10f3bdbb8257411200d13f6e185e22306dca14b6158578d8466
+        size: 215764906 
       - type: script
         commands:
           - unzip Installer.exe *.kart srb2.srb mdls* > /dev/null
-          - rm Installer.exe
+          - rm Data.zip
         dest-filename: apply_extra
