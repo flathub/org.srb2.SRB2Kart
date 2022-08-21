@@ -6,9 +6,8 @@ command: srb2kart
 finish-args:
   - --share=ipc
   - --share=network
-  - --socket=fallback-x11
+  - --socket=x11
   - --socket=pulseaudio
-  - --socket=wayland
   - --device=all
   - --persist=.srb2kart
   - --filesystem=xdg-run/app/com.discordapp.Discord:create
