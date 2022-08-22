@@ -42,6 +42,10 @@ modules:
       - type: archive
         url: https://sitsa.dl.sourceforge.net/project/modplug-xmms/libmodplug/0.8.8.5/libmodplug-0.8.8.5.tar.gz
         sha256: 77462d12ee99476c8645cb5511363e3906b88b33a6b54362b4dbc0f39aa2daad
+        x-checker-data:
+          type: anitya
+          project-id: 5669
+          url-template: https://sourceforge.net/projects/modplug-xmms/files/libmodplug/$version/libmodplug-$version.tar.gz
 
   - name: sdl-mixer
     buildsystem: autotools
