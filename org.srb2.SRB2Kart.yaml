@@ -32,6 +32,33 @@ modules:
           stable-only: true
           url-template: https://bitbucket.org/mpyne/game-music-emu/downloads/game-music-emu-$version.tar.xz
 
+  - name: libmodplug
+    buildsystem: autotools
+    cleanup:
+      - /include
+      - /lib/*.la
+      - /lib/pkgconfig
+    sources:
+      - type: archive
+        url: https://sitsa.dl.sourceforge.net/project/modplug-xmms/libmodplug/0.8.8.5/libmodplug-0.8.8.5.tar.gz
+        sha256: 77462d12ee99476c8645cb5511363e3906b88b33a6b54362b4dbc0f39aa2daad
+        x-checker-data:
+          type: anitya
+          project-id: 5669
+          url-template: https://sourceforge.net/projects/modplug-xmms/files/libmodplug/$version/libmodplug-$version.tar.gz
+
+  - name: sdl-mixer
+    buildsystem: autotools
+    cleanup:
+      - /include
+      - /lib/*.la
+      - /lib/*.a
+      - /lib/pkgconfig
+    sources:
+      - type: archive
+        url: https://github.com/libsdl-org/SDL_mixer/archive/refs/tags/release-2.0.4.tar.gz
+        sha256: 5605b6f230717acf6d09549671f7fe03f006700c61a61b86042888f81792e2b3
+
   - name: rapidjson
     buildsystem: cmake-ninja
     config-opts:
