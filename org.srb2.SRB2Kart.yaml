@@ -40,8 +40,8 @@ modules:
       - /lib/pkgconfig
     sources:
       - type: archive
-        url: https://sitsa.dl.sourceforge.net/project/modplug-xmms/libmodplug/0.8.8.5/libmodplug-0.8.8.5.tar.gz
-        sha256: 77462d12ee99476c8645cb5511363e3906b88b33a6b54362b4dbc0f39aa2daad
+        url: https://sourceforge.net/projects/modplug-xmms/files/libmodplug/0.8.9.0/libmodplug-0.8.9.0.tar.gz
+        sha256: 457ca5a6c179656d66c01505c0d95fafaead4329b9dbaa0f997d00a3508ad9de
         x-checker-data:
           type: anitya
           project-id: 5669
@@ -62,10 +62,10 @@ modules:
   - name: rapidjson
     buildsystem: cmake-ninja
     config-opts:
-    - -DRAPIDJSON_BUILD_DOC=OFF
-    - -DRAPIDJSON_BUILD_EXAMPLES=OFF
-    - -DRAPIDJSON_BUILD_TESTS=OFF
-    - -DRAPIDJSON_BUILD_THIRDPARTY_GTEST=OFF
+      - -DRAPIDJSON_BUILD_DOC=OFF
+      - -DRAPIDJSON_BUILD_EXAMPLES=OFF
+      - -DRAPIDJSON_BUILD_TESTS=OFF
+      - -DRAPIDJSON_BUILD_THIRDPARTY_GTEST=OFF
     cleanup:
       - /include
       - /lib/cmake
@@ -99,13 +99,13 @@ modules:
       arch:
         arm:
           env:
-            ARCH_MAKE_ARGS: 'LINUX=1 NONX86=1'
+            ARCH_MAKE_ARGS: LINUX=1 NONX86=1
         aarch64:
           env:
-            ARCH_MAKE_ARGS: 'LINUX64=1'
+            ARCH_MAKE_ARGS: LINUX64=1
         x86_64:
           env:
-            ARCH_MAKE_ARGS: 'LINUX64=1 X86_64=1'
+            ARCH_MAKE_ARGS: LINUX64=1 X86_64=1
     build-commands:
       - make -C src -j $FLATPAK_BUILDER_N_JOBS NOUPX=1 SDL=1 HAVE_DISCORDRPC=1 $ARCH_MAKE_ARGS
       - install -D -m 755 -t $FLATPAK_DEST/bin bin/Linux*/Release/lsdl2srb2kart
@@ -144,7 +144,7 @@ modules:
         filename: Data.zip
         url: https://github.com/STJr/Kart-Public/releases/download/v1.5/AssetsLinuxOnly.zip
         sha256: 0381e4c670c64080ae72c2721d761ce460916cc3f4338363adea218453906ab0
-        size: 221723531 
+        size: 221723531
       - type: script
         commands:
           - unzip Data.zip *.kart srb2.srb mdls* > /dev/null
