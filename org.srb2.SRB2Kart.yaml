@@ -115,8 +115,8 @@ modules:
       - install -D -m 644 -t $FLATPAK_DEST/share/metainfo $FLATPAK_ID.metainfo.xml
     sources:
       - type: archive
-        url: https://github.com/STJr/Kart-Public/archive/refs/tags/v1.5.tar.gz
-        sha256: a3486c80603a11c3cc696f1f03c9ce0c7d9cfda1879c4e5e182ae481449c70c8
+        url: https://github.com/STJr/Kart-Public/archive/refs/tags/v1.6.tar.gz
+        sha256: 924489e33ebb7e41bae3b84a65be2aae2ca01e2050938bff1e702b39848958d6
         x-checker-data:
           type: anitya
           project-id: 18640
@@ -142,9 +142,9 @@ modules:
     sources:
       - type: extra-data
         filename: Data.zip
-        url: https://github.com/STJr/Kart-Public/releases/download/v1.5/AssetsLinuxOnly.zip
-        sha256: 0381e4c670c64080ae72c2721d761ce460916cc3f4338363adea218453906ab0
-        size: 221723531
+        url: https://github.com/STJr/Kart-Public/releases/download/v1.6/AssetsLinuxOnly.zip
+        sha256: cfe4f2e654f24cfb6f56ff258cb8c75ad83dfdb074f999e4d141fcb201b806bc
+        size: 220991971
       - type: script
         commands:
           - unzip Data.zip *.kart srb2.srb mdls* > /dev/null
