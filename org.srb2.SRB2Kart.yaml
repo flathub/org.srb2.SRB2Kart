@@ -143,7 +143,7 @@ modules:
       - type: extra-data
         filename: Data.zip
         url: https://github.com/STJr/Kart-Public/releases/download/v1.6/AssetsLinuxOnly.zip
-        sha256: cfe4f2e654f24cfb6f56ff258cb8c75ad83dfdb074f999e4d141fcb201b806bc
+        sha256: d199a5891ccb62c9959d624a951997d25c0b55531d9442f8b2929184d2a25700
         size: 220991971
       - type: script
         commands:
