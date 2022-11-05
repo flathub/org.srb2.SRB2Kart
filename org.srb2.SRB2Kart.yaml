@@ -127,8 +127,8 @@ modules:
       - install -D -m 644 -t $FLATPAK_DEST/share/metainfo $FLATPAK_ID.metainfo.xml
     sources:
       - type: archive
-        url: https://github.com/STJr/Kart-Public/archive/refs/tags/v1.6.tar.gz
-        sha256: 924489e33ebb7e41bae3b84a65be2aae2ca01e2050938bff1e702b39848958d6
+        url: https://github.com/STJr/Kart-Public/archive/refs/tags/v1.5.tar.gz
+        sha256: a3486c80603a11c3cc696f1f03c9ce0c7d9cfda1879c4e5e182ae481449c70c8
         x-checker-data:
           type: anitya
           project-id: 18640
