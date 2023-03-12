@@ -13,6 +13,18 @@ finish-args:
   - --persist=.srb2kart
   - --filesystem=xdg-run/app/com.discordapp.Discord:create
   - --filesystem=xdg-run/discord-ipc-0
+
+add-extensions:
+  com.valvesoftware.Steam.Utility.gamescope:
+    version: stable
+    add-ld-path: lib
+    no-autodownload: true
+    autodelete: true
+    directory: utils/gamescope
+
+cleanup-commands:
+  - mkdir -p /app/utils/gamescope
+
 modules:
   - shared-modules/glu/glu-9.json
 
