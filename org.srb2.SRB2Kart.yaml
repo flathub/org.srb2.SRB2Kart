@@ -1,6 +1,6 @@
 app-id: org.srb2.SRB2Kart
 runtime: org.freedesktop.Platform
-runtime-version: '21.08'
+runtime-version: '22.08'
 sdk: org.freedesktop.Sdk
 command: srb2kart.sh
 finish-args:
@@ -56,8 +56,8 @@ modules:
       - /lib/pkgconfig
     sources:
       - type: archive
-        url: https://github.com/libsdl-org/SDL_mixer/archive/refs/tags/release-2.0.4.tar.gz
-        sha256: 5605b6f230717acf6d09549671f7fe03f006700c61a61b86042888f81792e2b3
+        url: https://github.com/libsdl-org/SDL_mixer/archive/refs/tags/release-2.6.3.tar.gz
+        sha256: 91dd065e9e63f499e5317350b110184b0ba96bc5f63c39b3a9939a136c40c035
 
   - name: rapidjson
     buildsystem: cmake-ninja
