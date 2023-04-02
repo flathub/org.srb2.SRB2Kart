@@ -7,6 +7,10 @@ done
 export PATH="/app/utils/gamescope/bin:$PATH"
 export SRB2WADDIR=/app/extra
 
+if [[ -z $(find ~/.srb2kart -name bonuschars.kart) ]]; then
+	ln -s /app/extra/bonuschars.kart ~/.srb2kart/bonuschars.kart
+fi
+
 if [ -z "$GAMESCOPE_ARGS" ]; then
 	GAMESCOPE_ARGS="-h 1080 -C 1000 -i"
 fi
