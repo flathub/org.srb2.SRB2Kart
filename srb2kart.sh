@@ -5,7 +5,10 @@ for i in {0..9}; do
 done
 
 export PATH="/app/utils/gamescope/bin:$PATH"
-export SRB2WADDIR=/app/extra
+
+if [[ -z "$SRB2WADDIR" ]]; then
+	export SRB2WADDIR=/app/extra
+fi
 
 if [ -z "$GAMESCOPE_ARGS" ]; then
 	GAMESCOPE_ARGS="-h 1080 -C 1000 -i"
