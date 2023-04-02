@@ -59,7 +59,7 @@ modules:
           project-id: 5669
           url-template: https://sourceforge.net/projects/modplug-xmms/files/libmodplug/$version/libmodplug-$version.tar.gz
 
-  - name: sdl-mixer
+  - name: sdl2-mixer
     buildsystem: autotools
     cleanup:
       - /include
@@ -70,6 +70,10 @@ modules:
       - type: archive
         url: https://github.com/libsdl-org/SDL_mixer/archive/refs/tags/release-2.6.3.tar.gz
         sha256: 91dd065e9e63f499e5317350b110184b0ba96bc5f63c39b3a9939a136c40c035
+        x-checker-data:
+          type: anitya
+          project-id: 4782
+          url-template: https://github.com/libsdl-org/SDL_mixer/releases/download/release-$version/SDL2_mixer-$version.tar.gz
 
   - name: rapidjson
     buildsystem: cmake-ninja
