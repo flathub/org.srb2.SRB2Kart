@@ -68,8 +68,8 @@ modules:
       - /lib/pkgconfig
     sources:
       - type: archive
-        url: https://github.com/libsdl-org/SDL_mixer/archive/refs/tags/release-2.6.3.tar.gz
-        sha256: 91dd065e9e63f499e5317350b110184b0ba96bc5f63c39b3a9939a136c40c035
+        url: https://github.com/libsdl-org/SDL_mixer/releases/download/release-2.6.3/SDL2_mixer-2.6.3.tar.gz
+        sha256: 7a6ba86a478648ce617e3a5e9277181bc67f7ce9876605eea6affd4a0d6eea8f
         x-checker-data:
           type: anitya
           project-id: 4782
