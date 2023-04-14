@@ -5,7 +5,10 @@ for i in {0..9}; do
 done
 
 export PATH="/app/utils/gamescope/bin:$PATH"
-export SRB2WADDIR=/app/extra
+
+if [[ -z "$SRB2WADDIR" ]]; then
+	export SRB2WADDIR=/app/extra
+fi
 
 if [[ -z $(find ~/.srb2kart -name bonuschars.kart) ]]; then
 	ln -s /app/extra/bonuschars.kart ~/.srb2kart/bonuschars.kart
