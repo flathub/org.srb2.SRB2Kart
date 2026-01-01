@@ -43,7 +43,11 @@
     </screenshot>
   </screenshots>
   <url type="homepage">https://wiki.srb2.org/wiki/SRB2Kart</url>
-  <developer_name>Kart Krew</developer_name>
+  <url type="bugtracker">https://git.do.srb2.org/KartKrew/Kart-Public/-/issues</url>
+  <url type="vcs-browser">https://git.do.srb2.org/KartKrew/Kart-Public/</url>
+  <developer id="org.srb2">
+    <name>Kart Krew</name>
+  </developer>
   <provides>
     <binary>srb2kart</binary>
   </provides>
