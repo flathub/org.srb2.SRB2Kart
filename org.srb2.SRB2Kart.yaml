@@ -31,7 +31,7 @@ modules:
   - name: game-music-emu
     buildsystem: cmake-ninja
     config-opts:
-      -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+      - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
     cleanup:
       - /include
       - /lib/*.so
