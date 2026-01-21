@@ -34,6 +34,9 @@ modules:
       - /include
       - /lib/*.so
       - /lib/pkgconfig
+    config-opts:
+      - -DGME_YM2612_EMU=MAME
+      - -DENABLE_UBSAN=OFF
     sources:
       - type: archive
         url: https://bitbucket.org/mpyne/game-music-emu/downloads/game-music-emu-0.6.3.tar.xz
