@@ -30,6 +30,8 @@ modules:
 
   - name: libgme
     buildsystem: cmake-ninja
+    config-opts: 
+      - -DCMAKE_INSTALL_LIBDIR=lib
     # cleanup:
     #   - /include
     #   - /lib/*.so
@@ -83,6 +85,7 @@ modules:
       - -DRAPIDJSON_BUILD_TESTS=OFF
       - -DRAPIDJSON_BUILD_THIRDPARTY_GTEST=OFF
       - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+      - -DCMAKE_INSTALL_LIBDIR=lib
     cleanup:
       - /include
       - /lib/cmake
@@ -111,6 +114,7 @@ modules:
       - -DBUILD_SHARED_LIBS=ON
       - -DBUILD_EXAMPLES=OFF
       - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+      - -DCMAKE_INSTALL_LIBDIR=lib
     cleanup:
       - /include
     sources:
@@ -124,9 +128,9 @@ modules:
       env:
         LDFLAGS: "-L/app/lib -L/app/lib64"
         CPPFLAGS: "-I/app/include"
-        CFLAGS: "-O2 -g -std=gnu17 -I/app/include"
-        CXXFLAGS: "-O2 -g -std=gnu++17 -I/app/include"
-        PKG_CONFIG_PATH: "/app/lib/pkgconfig:/app/lib64/pkgconfig:/app/share/pkgconfig"
+        CFLAGS: "-O3 -g -std=gnu17 -I/app/include"
+        CXXFLAGS: "-O3 -g -std=gnu++17 -I/app/include"
+        PKG_CONFIG_PATH: "/app/lib/pkgconfig:/app/share/pkgconfig"
       arch:
         arm:
           env:
@@ -141,9 +145,9 @@ modules:
       - >
         make -C src -j $FLATPAK_BUILDER_N_JOBS 
         NOUPX=1 SDL=1 HAVE_DISCORDRPC=1 
-        HAVE_GME=1 GME_CFLAGS="-I/app/include" GME_LDFLAGS="-L/app/lib -L/app/lib64 -lgme"
-        HAVE_LIBXMP=1 LIBXMP_CFLAGS="-I/app/include" LIBXMP_LDFLAGS="-L/app/lib -L/app/lib64 -lxmp"
-        HAVE_FLUIDSYNTH=1 FLUID_CFLAGS="-I/app/include" FLUID_LDFLAGS="-L/app/lib -L/app/lib64 -lfluidsynth"
+        HAVE_GME=1 GME_CFLAGS="-I/app/include" GME_LDFLAGS="-L/app/lib -lgme"
+        HAVE_LIBXMP=1 LIBXMP_CFLAGS="-I/app/include" LIBXMP_LDFLAGS="-L/app/lib -lxmp"
+        HAVE_FLUIDSYNTH=1 FLUID_CFLAGS="-I/app/include" FLUID_LDFLAGS="-L/app/lib -lfluidsynth"
         $ARCH_MAKE_ARGS
       - install -D -m 755 bin/Linux*/Release/lsdl2srb2kart $FLATPAK_DEST/bin/srb2kart
       - install -D -m 644 srb2.png $FLATPAK_DEST/share/icons/hicolor/256x256/apps/$FLATPAK_ID.png
