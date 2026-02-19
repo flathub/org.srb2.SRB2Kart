@@ -82,6 +82,8 @@ modules:
       - -DRAPIDJSON_BUILD_EXAMPLES=OFF
       - -DRAPIDJSON_BUILD_TESTS=OFF
       - -DRAPIDJSON_BUILD_THIRDPARTY_GTEST=OFF
+    append-options:
+      - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
     cleanup:
       - /include
       - /lib/cmake

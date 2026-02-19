@@ -29,6 +29,6 @@ jobs:
           pwd
           ls -R
 
-      - name: Build discord-rpc
+      - name: Build
         run: |
-          flatpak-builder --user --disable-cache --stop-at=discord-rpc build_dir $GITHUB_WORKSPACE/org.srb2.SRB2Kart.yaml
+          flatpak-builder --user --disable-cache build_dir $GITHUB_WORKSPACE/org.srb2.SRB2Kart.yaml
