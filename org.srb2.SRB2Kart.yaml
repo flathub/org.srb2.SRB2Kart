@@ -36,13 +36,13 @@ modules:
       - /lib/pkgconfig
     sources:
       - type: archive
-        url: https://bitbucket.org/mpyne/game-music-emu/downloads/game-music-emu-0.6.3.tar.xz
-        sha256: aba34e53ef0ec6a34b58b84e28bf8cfbccee6585cebca25333604c35db3e051d
+        url: https://github.com/libgme/game-music-emu/releases/download/0.6.4/libgme-0.6.4-src.tar.gz
+        sha256: 6f94eac735d86bca998a7ce1170d007995191ef6d4388345a0dc5ffa1de0bafa
         x-checker-data:
           type: anitya
           project-id: 866
           stable-only: true
-          url-template: https://bitbucket.org/mpyne/game-music-emu/downloads/game-music-emu-$version.tar.xz
+          url-template: https://github.com/libgme/game-music-emu/releases/download/$version/libgme-$version-src.tar.gz
 
   - name: libmodplug
     buildsystem: autotools
