@@ -22,6 +22,11 @@ jobs:
           flatpak install --user -y flathub org.freedesktop.Sdk//25.08
           flatpak install --user -y flathub org.freedesktop.Platform//25.08
 
+      - name: Debug path
+        run: |
+          pwd
+          ls -R
+
       - name: Build discord-rpc
         run: |
-          flatpak-builder --user --disable-cache --stop-at=discord-rpc build_dir org.srb2.SRB2Kart.yml
+          flatpak-builder --user --disable-cache --stop-at=discord-rpc build_dir $GITHUB_WORKSPACE/org.srb2.SRB2Kart.yml
