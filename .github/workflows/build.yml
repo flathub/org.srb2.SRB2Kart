@@ -1,20 +1,31 @@
-name: Test flatpak build
-on: [push, pull_request]
+name: Build & Test Flatpak
+
+on:
+  push:
+    branches: [ newer-freedesktop-sdk ]
+  pull_request:
 
 jobs:
-  flatpak-build:
+  flatpak:
     runs-on: ubuntu-latest
     container:
       image: ghcr.io/flathub-infra/flatpak-github-actions:freedesktop-25.08
       options: --privileged
+
     strategy:
       matrix:
         arch: [x86_64, aarch64]
+      fail-fast: false
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: flatpak/flatpak-github-actions/flatpak-builder@v6
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Build Flatpak
+        uses: flatpak/flatpak-github-actions/flatpak-builder@v6
         with:
+          manifest-path: ./org.srb2.SRB2Kart.yml
           bundle: srb2kart-${{ matrix.arch }}.flatpak
-          manifest-path: org.srb2.SRB2Kart.yml
           cache: true
           arch: ${{ matrix.arch }}
+          stop-at: discord-rpc # for troubleshooting discord-rpc failures
