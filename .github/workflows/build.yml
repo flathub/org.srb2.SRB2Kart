@@ -3,7 +3,17 @@ on: [push, pull_request]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - arch: x86_64
+            runner: ubuntu-latest
+          - arch: aarch64
+            runner: ubuntu-24.04-arm
+
+    runs-on: ${{ matrix.runner }}
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -24,11 +34,23 @@ jobs:
           flatpak install --user -y flathub org.freedesktop.Sdk//25.08
           flatpak install --user -y flathub org.freedesktop.Platform//25.08
 
-      - name: Debug paths
+      - name: Build and Bundle
         run: |
-          pwd
-          ls -R
+          # Build specifically for the matrix architecture
+          flatpak-builder --user --disable-cache --arch=${{ matrix.arch }} --repo=repo build_dir org.srb2.SRB2Kart.yaml
+          
+          # Extract ID and handle potential empty values
+          RAW_ID=$(grep '^id:' org.srb2.SRB2Kart.yaml | cut -d: -f2 | xargs)
+          FLATPAK_ID=${RAW_ID:-org.srb2.SRB2Kart}
+          
+          echo "Building bundle for ID: $FLATPAK_ID on ${{ matrix.arch }}"
+          
+          # Create bundle with architecture in the filename
+          flatpak build-bundle repo srb2_${{ matrix.arch }}.flatpak "$FLATPAK_ID"
 
-      - name: Build
-        run: |
-          flatpak-builder --user --disable-cache build_dir $GITHUB_WORKSPACE/org.srb2.SRB2Kart.yaml
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: srb2kart-bundle-${{ matrix.arch }}
+          path: srb2_${{ matrix.arch }}.flatpak
+          if-no-files-found: error
