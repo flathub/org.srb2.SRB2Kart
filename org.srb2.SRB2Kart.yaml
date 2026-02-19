@@ -98,6 +98,9 @@ modules:
           url-template: https://github.com/Tencent/rapidjson/archive/refs/tags/v$version.tar.gz
 
   - name: discord-rpc
+    build-options:
+      cflags: "-O2 -g -Wno-error"
+      cxxflags: "-O2 -g -Wno-error"
     buildsystem: cmake-ninja
     config-opts:
       - -DBUILD_SHARED_LIBS=ON
