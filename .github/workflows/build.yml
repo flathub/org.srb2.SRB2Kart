@@ -28,4 +28,4 @@ jobs:
           bundle: srb2kart-${{ matrix.arch }}.flatpak
           cache: true
           arch: ${{ matrix.arch }}
-          stop-at: discord-rpc # for troubleshooting discord-rpc failures
+          #stop-at: discord-rpc # for troubleshooting discord-rpc failures - will uncomment later
