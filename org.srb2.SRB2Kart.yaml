@@ -25,6 +25,14 @@ add-extensions:
 cleanup-commands:
   - mkdir -p /app/utils/gamescope
 
+cleanup:
+  - "/include"
+  - "/lib/cmake"
+  - "/lib/pkgconfig"
+  - "/share/man"
+  - "*.la"
+  - "*.a"
+
 modules:
   - shared-modules/glu/glu-9.json
 
