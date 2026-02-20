@@ -107,8 +107,8 @@ modules:
         sha256: 2d2601a82d2d3b7e143a3c8d43ef616671391034bc46891a9816b79cf2d3e7a8
   - name: discord-rpc
     build-options:
-      cflags: "-O2 -g -Wno-error"
-      cxxflags: "-O2 -g -Wno-error"
+      cflags: "-O3 -Wno-error"
+      cxxflags: "-O3 -Wno-error"
     buildsystem: cmake-ninja
     config-opts:
       - -DBUILD_SHARED_LIBS=ON
