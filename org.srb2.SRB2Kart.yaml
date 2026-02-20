@@ -1,6 +1,6 @@
 app-id: org.srb2.SRB2Kart
 runtime: org.freedesktop.Platform
-runtime-version: '23.08'
+runtime-version: '25.08'
 sdk: org.freedesktop.Sdk
 command: srb2kart.sh
 finish-args:
@@ -25,24 +25,34 @@ add-extensions:
 cleanup-commands:
   - mkdir -p /app/utils/gamescope
 
+cleanup:
+  - "/include"
+  - "/lib/cmake"
+  - "/lib/pkgconfig"
+  - "/share/man"
+  - "*.la"
+  - "*.a"
+
 modules:
   - shared-modules/glu/glu-9.json
 
-  - name: game-music-emu
+  - name: libgme
     buildsystem: cmake-ninja
-    cleanup:
-      - /include
-      - /lib/*.so
-      - /lib/pkgconfig
+    config-opts: 
+      - -DCMAKE_INSTALL_LIBDIR=lib
+    # cleanup:
+    #   - /include
+    #   - /lib/*.so
+    #   - /lib/pkgconfig
     sources:
       - type: archive
-        url: https://bitbucket.org/mpyne/game-music-emu/downloads/game-music-emu-0.6.3.tar.xz
-        sha256: aba34e53ef0ec6a34b58b84e28bf8cfbccee6585cebca25333604c35db3e051d
+        url: https://github.com/libgme/game-music-emu/releases/download/0.6.4/libgme-0.6.4-src.tar.gz
+        sha256: 6f94eac735d86bca998a7ce1170d007995191ef6d4388345a0dc5ffa1de0bafa
         x-checker-data:
           type: anitya
           project-id: 866
           stable-only: true
-          url-template: https://bitbucket.org/mpyne/game-music-emu/downloads/game-music-emu-$version.tar.xz
+          url-template: https://github.com/libgme/game-music-emu/releases/download/$version/libgme-$version-src.tar.gz
 
   - name: libmodplug
     buildsystem: autotools
@@ -82,26 +92,37 @@ modules:
       - -DRAPIDJSON_BUILD_EXAMPLES=OFF
       - -DRAPIDJSON_BUILD_TESTS=OFF
       - -DRAPIDJSON_BUILD_THIRDPARTY_GTEST=OFF
+      - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+      - -DCMAKE_INSTALL_LIBDIR=lib
     cleanup:
       - /include
       - /lib/cmake
       - /lib/pkgconfig
       - /share/doc
+    # sources:
+    #   - type: archive
+    #     url: https://github.com/Tencent/rapidjson/archive/refs/tags/v1.1.0.tar.gz
+    #     sha256: bf7ced29704a1e696fbccf2a2b4ea068e7774fa37f6d7dd4039d0787f8bed98e
+    #     x-checker-data:
+    #       type: anitya
+    #       project-id: 7422
+    #       stable-only: true
+    #       url-template: https://github.com/Tencent/rapidjson/archive/refs/tags/v$version.tar.gz
     sources:
       - type: archive
-        url: https://github.com/Tencent/rapidjson/archive/refs/tags/v1.1.0.tar.gz
-        sha256: bf7ced29704a1e696fbccf2a2b4ea068e7774fa37f6d7dd4039d0787f8bed98e
-        x-checker-data:
-          type: anitya
-          project-id: 7422
-          stable-only: true
-          url-template: https://github.com/Tencent/rapidjson/archive/refs/tags/v$version.tar.gz
-
+        # latest commit as of 2026-02
+        url: https://github.com/Tencent/rapidjson/archive/24b5e7a8b27f42fa16b96fc70aade9106cf7102f.tar.gz
+        sha256: 2d2601a82d2d3b7e143a3c8d43ef616671391034bc46891a9816b79cf2d3e7a8
   - name: discord-rpc
+    build-options:
+      cflags: "-O3 -Wno-error"
+      cxxflags: "-O3 -Wno-error"
     buildsystem: cmake-ninja
     config-opts:
       - -DBUILD_SHARED_LIBS=ON
       - -DBUILD_EXAMPLES=OFF
+      - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+      - -DCMAKE_INSTALL_LIBDIR=lib
     cleanup:
       - /include
     sources:
@@ -112,6 +133,12 @@ modules:
   - name: srb2kart
     buildsystem: simple
     build-options:
+      env:
+        LDFLAGS: "-L/app/lib -L/app/lib64"
+        CPPFLAGS: "-I/app/include"
+        CFLAGS: "-O3 -std=gnu17 -I/app/include"
+        CXXFLAGS: "-O3 -std=gnu++17 -I/app/include"
+        PKG_CONFIG_PATH: "/app/lib/pkgconfig:/app/share/pkgconfig"
       arch:
         arm:
           env:
@@ -123,7 +150,13 @@ modules:
           env:
             ARCH_MAKE_ARGS: LINUX64=1 X86_64=1
     build-commands:
-      - make -C src -j $FLATPAK_BUILDER_N_JOBS NOUPX=1 SDL=1 HAVE_DISCORDRPC=1 $ARCH_MAKE_ARGS
+      - >
+        make -C src -j $FLATPAK_BUILDER_N_JOBS 
+        NOUPX=1 SDL=1 HAVE_DISCORDRPC=1 
+        HAVE_GME=1 GME_CFLAGS="-I/app/include" GME_LDFLAGS="-L/app/lib -lgme"
+        HAVE_LIBXMP=1 LIBXMP_CFLAGS="-I/app/include" LIBXMP_LDFLAGS="-L/app/lib -lxmp"
+        HAVE_FLUIDSYNTH=1 FLUID_CFLAGS="-I/app/include" FLUID_LDFLAGS="-L/app/lib -lfluidsynth"
+        $ARCH_MAKE_ARGS
       - install -D -m 755 bin/Linux*/Release/lsdl2srb2kart $FLATPAK_DEST/bin/srb2kart
       - install -D -m 644 srb2.png $FLATPAK_DEST/share/icons/hicolor/256x256/apps/$FLATPAK_ID.png
       - install -D -m 755 srb2kart.sh $FLATPAK_DEST/bin/srb2kart.sh
