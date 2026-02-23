@@ -152,10 +152,7 @@ modules:
     build-commands:
       - >
         make -C src -j $FLATPAK_BUILDER_N_JOBS 
-        NOUPX=1 SDL=1 HAVE_DISCORDRPC=1 
-        HAVE_GME=1 GME_CFLAGS="-I/app/include" GME_LDFLAGS="-L/app/lib -lgme"
-        HAVE_LIBXMP=1 LIBXMP_CFLAGS="-I/app/include" LIBXMP_LDFLAGS="-L/app/lib -lxmp"
-        HAVE_FLUIDSYNTH=1 FLUID_CFLAGS="-I/app/include" FLUID_LDFLAGS="-L/app/lib -lfluidsynth"
+        NOUPX=1 SDL=1 HAVE_DISCORDRPC=1
         $ARCH_MAKE_ARGS
       - install -D -m 755 bin/Linux*/Release/lsdl2srb2kart $FLATPAK_DEST/bin/srb2kart
       - install -D -m 644 srb2.png $FLATPAK_DEST/share/icons/hicolor/256x256/apps/$FLATPAK_ID.png
