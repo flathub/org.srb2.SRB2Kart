@@ -15,7 +15,7 @@ finish-args:
   - --filesystem=xdg-run/discord-ipc-0
 
 add-extensions:
-  com.valvesoftware.Steam.Utility.gamescope:
+  org.freedesktop.Platform.VulkanLayer.gamescope:
     version: stable
     add-ld-path: lib
     no-autodownload: true
