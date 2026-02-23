@@ -19,7 +19,7 @@ add-extensions:
     directory: utils/gamescope
     version: '25.08'
     add-ld-path: lib
-    no-autodownload: false
+    no-autodownload: true
     autodelete: true
 
 cleanup-commands:
