@@ -13,17 +13,19 @@ finish-args:
   - --persist=.srb2kart
   - --filesystem=xdg-run/app/com.discordapp.Discord:create
   - --filesystem=xdg-run/discord-ipc-0
+  - --env=PATH=/app/bin:/usr/bin:/usr/lib/extensions/vulkan/gamescope/bin # hacks for gamescope
+  - --env=LD_LIBRARY_PATH=/app/lib:/usr/lib/extensions/vulkan/gamescope/lib # ALSO hacks for gamescope...
 
 add-extensions:
   org.freedesktop.Platform.VulkanLayer.gamescope:
-    directory: utils/gamescope
-    version: '25.08'
+    directory: lib/extensions/vulkan/gamescope
+    version: '25.08' 
     add-ld-path: lib
-    no-autodownload: true
+    no-autodownload: false
     autodelete: true
 
 cleanup-commands:
-  - mkdir -p /app/utils/gamescope
+  - mkdir -p /app/lib/extensions/vulkan/gamescope
 
 cleanup:
   - "/include"
