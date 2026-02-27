@@ -58,6 +58,8 @@ modules:
 
   - name: libmodplug
     buildsystem: autotools
+    build-options:
+      cxxflags: "-O3 -Wno-register" # for fastmix logs because c17 std doesnt like usage of `register`
     cleanup:
       - /include
       - /lib/*.la
