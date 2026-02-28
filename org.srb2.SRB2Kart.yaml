@@ -31,7 +31,6 @@ cleanup:
   - "/include"
   - "/lib/cmake"
   - "/lib/pkgconfig"
-  - "/share/man"
   - "*.la"
   - "*.a"
 
