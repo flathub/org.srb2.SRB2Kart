@@ -13,13 +13,13 @@ finish-args:
   - --persist=.srb2kart
   - --filesystem=xdg-run/app/com.discordapp.Discord:create
   - --filesystem=xdg-run/discord-ipc-0
-  - --env=PATH=/app/bin:/usr/bin:/usr/lib/extensions/vulkan/gamescope/bin # hacks for gamescope
-  - --env=LD_LIBRARY_PATH=/app/lib:/usr/lib/extensions/vulkan/gamescope/lib # ALSO hacks for gamescope...
+  - --env=PATH=/app/bin:/usr/bin:/usr/lib/extensions/vulkan/gamescope/bin
+  - --env=LD_LIBRARY_PATH=/app/lib:/usr/lib/extensions/vulkan/gamescope/lib
 
 add-extensions:
   org.freedesktop.Platform.VulkanLayer.gamescope:
     directory: lib/extensions/vulkan/gamescope
-    version: '25.08' 
+    version: 'stable' 
     add-ld-path: lib
     no-autodownload: true
     autodelete: true
@@ -41,10 +41,6 @@ modules:
     buildsystem: cmake-ninja
     config-opts: 
       - -DCMAKE_INSTALL_LIBDIR=lib
-    # cleanup:
-    #   - /include
-    #   - /lib/*.so
-    #   - /lib/pkgconfig
     sources:
       - type: archive
         url: https://github.com/libgme/game-music-emu/releases/download/0.6.4/libgme-0.6.4-src.tar.gz
@@ -58,7 +54,7 @@ modules:
   - name: libmodplug
     buildsystem: autotools
     build-options:
-      cxxflags: "-O3 -Wno-register" # for fastmix logs because c17 std doesnt like usage of `register`
+      cxxflags: "-O3 -Wno-register"
     cleanup:
       - /include
       - /lib/*.la
@@ -102,15 +98,6 @@ modules:
       - /lib/cmake
       - /lib/pkgconfig
       - /share/doc
-    # sources:
-    #   - type: archive
-    #     url: https://github.com/Tencent/rapidjson/archive/refs/tags/v1.1.0.tar.gz
-    #     sha256: bf7ced29704a1e696fbccf2a2b4ea068e7774fa37f6d7dd4039d0787f8bed98e
-    #     x-checker-data:
-    #       type: anitya
-    #       project-id: 7422
-    #       stable-only: true
-    #       url-template: https://github.com/Tencent/rapidjson/archive/refs/tags/v$version.tar.gz
     sources:
       - type: archive
         # latest commit as of 2026-02
