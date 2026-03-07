@@ -14,7 +14,7 @@ finish-args:
   - --filesystem=xdg-run/app/com.discordapp.Discord:create
   - --filesystem=xdg-run/discord-ipc-0
   - --env=PATH=/app/bin:/usr/bin:/usr/lib/extensions/vulkan/gamescope/bin
-  - --env=LD_LIBRARY_PATH=/app/lib:/usr/lib/extensions/vulkan/gamescope/lib
+  - --env=LD_LIBRARY_PATH=/app/lib:/usr/lib:/usr/lib/extensions/vulkan/gamescope/lib
 
 add-extensions:
   org.freedesktop.Platform.VulkanLayer.gamescope:
