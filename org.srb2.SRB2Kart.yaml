@@ -62,7 +62,6 @@ modules:
 
   - name: sdl2-mixer
     buildsystem: autotools
-    cleanup:
     sources:
       - type: archive
         url: https://github.com/libsdl-org/SDL_mixer/releases/download/release-2.8.1/SDL2_mixer-2.8.1.tar.gz
