@@ -51,10 +51,6 @@ modules:
     buildsystem: autotools
     build-options:
       cxxflags: "-O3 -Wno-register"
-    cleanup:
-      - /include
-      - /lib/*.la
-      - /lib/pkgconfig
     sources:
       - type: archive
         url: https://sourceforge.net/projects/modplug-xmms/files/libmodplug/0.8.9.0/libmodplug-0.8.9.0.tar.gz
@@ -67,10 +63,6 @@ modules:
   - name: sdl2-mixer
     buildsystem: autotools
     cleanup:
-      - /include
-      - /lib/*.la
-      - /lib/*.a
-      - /lib/pkgconfig
     sources:
       - type: archive
         url: https://github.com/libsdl-org/SDL_mixer/releases/download/release-2.8.1/SDL2_mixer-2.8.1.tar.gz
@@ -90,9 +82,6 @@ modules:
       - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
       - -DCMAKE_INSTALL_LIBDIR=lib
     cleanup:
-      - /include
-      - /lib/cmake
-      - /lib/pkgconfig
       - /share/doc
     sources:
       - type: archive
@@ -109,8 +98,6 @@ modules:
       - -DBUILD_EXAMPLES=OFF
       - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
       - -DCMAKE_INSTALL_LIBDIR=lib
-    cleanup:
-      - /include
     sources:
       - type: git
         url: https://github.com/discord/discord-rpc.git
