@@ -26,19 +26,19 @@ cleanup-commands:
   - mkdir -p /app/utils/gamescope
 
 cleanup:
-  - "/include"
-  - "/lib/cmake"
-  - "/lib/pkgconfig"
-  - "/share/man"
-  - "*.la"
-  - "*.a"
+  - /include
+  - /lib/cmake
+  - /lib/pkgconfig
+  - /share/man
+  - '*.la'
+  - '*.a'
 
 modules:
   - shared-modules/glu/glu-9.json
 
   - name: libgme
     buildsystem: cmake-ninja
-    config-opts: 
+    config-opts:
       - -DCMAKE_INSTALL_LIBDIR=lib
     # cleanup:
     #   - /include
@@ -46,8 +46,8 @@ modules:
     #   - /lib/pkgconfig
     sources:
       - type: archive
-        url: https://github.com/libgme/game-music-emu/releases/download/0.6.4/libgme-0.6.4-src.tar.gz
-        sha256: 6f94eac735d86bca998a7ce1170d007995191ef6d4388345a0dc5ffa1de0bafa
+        url: https://github.com/libgme/game-music-emu/releases/download/0.6.5/libgme-0.6.5-src.tar.gz
+        sha256: a133f19278222136ba0d8c27b64a07987ba05fec9d2e6d293ccd8cabdd97ddbb
         x-checker-data:
           type: anitya
           project-id: 866
@@ -115,8 +115,8 @@ modules:
         sha256: 2d2601a82d2d3b7e143a3c8d43ef616671391034bc46891a9816b79cf2d3e7a8
   - name: discord-rpc
     build-options:
-      cflags: "-O3 -Wno-error"
-      cxxflags: "-O3 -Wno-error"
+      cflags: -O3 -Wno-error
+      cxxflags: -O3 -Wno-error
     buildsystem: cmake-ninja
     config-opts:
       - -DBUILD_SHARED_LIBS=ON
@@ -134,11 +134,11 @@ modules:
     buildsystem: simple
     build-options:
       env:
-        LDFLAGS: "-L/app/lib -L/app/lib64"
-        CPPFLAGS: "-I/app/include"
-        CFLAGS: "-O3 -std=gnu17 -I/app/include"
-        CXXFLAGS: "-O3 -std=gnu++17 -I/app/include"
-        PKG_CONFIG_PATH: "/app/lib/pkgconfig:/app/share/pkgconfig"
+        LDFLAGS: -L/app/lib -L/app/lib64
+        CPPFLAGS: -I/app/include
+        CFLAGS: -O3 -std=gnu17 -I/app/include
+        CXXFLAGS: -O3 -std=gnu++17 -I/app/include
+        PKG_CONFIG_PATH: /app/lib/pkgconfig:/app/share/pkgconfig
       arch:
         arm:
           env:
@@ -151,11 +151,11 @@ modules:
             ARCH_MAKE_ARGS: LINUX64=1 X86_64=1
     build-commands:
       - >
-        make -C src -j $FLATPAK_BUILDER_N_JOBS 
-        NOUPX=1 SDL=1 HAVE_DISCORDRPC=1 
-        HAVE_GME=1 GME_CFLAGS="-I/app/include" GME_LDFLAGS="-L/app/lib -lgme"
+        make -C src -j $FLATPAK_BUILDER_N_JOBS  NOUPX=1 SDL=1 HAVE_DISCORDRPC=1  HAVE_GME=1
+        GME_CFLAGS="-I/app/include" GME_LDFLAGS="-L/app/lib -lgme"
         HAVE_LIBXMP=1 LIBXMP_CFLAGS="-I/app/include" LIBXMP_LDFLAGS="-L/app/lib -lxmp"
-        HAVE_FLUIDSYNTH=1 FLUID_CFLAGS="-I/app/include" FLUID_LDFLAGS="-L/app/lib -lfluidsynth"
+        HAVE_FLUIDSYNTH=1 FLUID_CFLAGS="-I/app/include" FLUID_LDFLAGS="-L/app/lib
+        -lfluidsynth"
         $ARCH_MAKE_ARGS
       - install -D -m 755 bin/Linux*/Release/lsdl2srb2kart $FLATPAK_DEST/bin/srb2kart
       - install -D -m 644 srb2.png $FLATPAK_DEST/share/icons/hicolor/256x256/apps/$FLATPAK_ID.png
