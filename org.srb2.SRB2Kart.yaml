@@ -13,23 +13,20 @@ finish-args:
   - --persist=.srb2kart
   - --filesystem=xdg-run/app/com.discordapp.Discord:create
   - --filesystem=xdg-run/discord-ipc-0
+  - --env=PATH=/app/bin:/usr/bin:/usr/lib/extensions/vulkan/gamescope/bin
 
 add-extensions:
-  com.valvesoftware.Steam.Utility.gamescope:
-    version: stable
+  org.freedesktop.Platform.VulkanLayer.gamescope:
+    directory: lib/extensions/vulkan/gamescope
+    version: 'stable' 
     add-ld-path: lib
     no-autodownload: true
     autodelete: true
-    directory: utils/gamescope
-
-cleanup-commands:
-  - mkdir -p /app/utils/gamescope
 
 cleanup:
   - "/include"
   - "/lib/cmake"
   - "/lib/pkgconfig"
-  - "/share/man"
   - "*.la"
   - "*.a"
 
@@ -40,10 +37,6 @@ modules:
     buildsystem: cmake-ninja
     config-opts: 
       - -DCMAKE_INSTALL_LIBDIR=lib
-    # cleanup:
-    #   - /include
-    #   - /lib/*.so
-    #   - /lib/pkgconfig
     sources:
       - type: archive
         url: https://github.com/libgme/game-music-emu/releases/download/0.6.4/libgme-0.6.4-src.tar.gz
@@ -56,10 +49,8 @@ modules:
 
   - name: libmodplug
     buildsystem: autotools
-    cleanup:
-      - /include
-      - /lib/*.la
-      - /lib/pkgconfig
+    build-options:
+      cxxflags: "-O3 -Wno-register"
     sources:
       - type: archive
         url: https://sourceforge.net/projects/modplug-xmms/files/libmodplug/0.8.9.0/libmodplug-0.8.9.0.tar.gz
@@ -71,11 +62,6 @@ modules:
 
   - name: sdl2-mixer
     buildsystem: autotools
-    cleanup:
-      - /include
-      - /lib/*.la
-      - /lib/*.a
-      - /lib/pkgconfig
     sources:
       - type: archive
         url: https://github.com/libsdl-org/SDL_mixer/releases/download/release-2.8.1/SDL2_mixer-2.8.1.tar.gz
@@ -95,19 +81,7 @@ modules:
       - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
       - -DCMAKE_INSTALL_LIBDIR=lib
     cleanup:
-      - /include
-      - /lib/cmake
-      - /lib/pkgconfig
       - /share/doc
-    # sources:
-    #   - type: archive
-    #     url: https://github.com/Tencent/rapidjson/archive/refs/tags/v1.1.0.tar.gz
-    #     sha256: bf7ced29704a1e696fbccf2a2b4ea068e7774fa37f6d7dd4039d0787f8bed98e
-    #     x-checker-data:
-    #       type: anitya
-    #       project-id: 7422
-    #       stable-only: true
-    #       url-template: https://github.com/Tencent/rapidjson/archive/refs/tags/v$version.tar.gz
     sources:
       - type: archive
         # latest commit as of 2026-02
@@ -123,8 +97,6 @@ modules:
       - -DBUILD_EXAMPLES=OFF
       - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
       - -DCMAKE_INSTALL_LIBDIR=lib
-    cleanup:
-      - /include
     sources:
       - type: git
         url: https://github.com/discord/discord-rpc.git
@@ -152,10 +124,7 @@ modules:
     build-commands:
       - >
         make -C src -j $FLATPAK_BUILDER_N_JOBS 
-        NOUPX=1 SDL=1 HAVE_DISCORDRPC=1 
-        HAVE_GME=1 GME_CFLAGS="-I/app/include" GME_LDFLAGS="-L/app/lib -lgme"
-        HAVE_LIBXMP=1 LIBXMP_CFLAGS="-I/app/include" LIBXMP_LDFLAGS="-L/app/lib -lxmp"
-        HAVE_FLUIDSYNTH=1 FLUID_CFLAGS="-I/app/include" FLUID_LDFLAGS="-L/app/lib -lfluidsynth"
+        NOUPX=1 SDL=1 HAVE_DISCORDRPC=1
         $ARCH_MAKE_ARGS
       - install -D -m 755 bin/Linux*/Release/lsdl2srb2kart $FLATPAK_DEST/bin/srb2kart
       - install -D -m 644 srb2.png $FLATPAK_DEST/share/icons/hicolor/256x256/apps/$FLATPAK_ID.png
