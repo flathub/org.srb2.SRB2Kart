@@ -4,7 +4,7 @@ for i in {0..9}; do
 	test -S $XDG_RUNTIME_DIR/discord-ipc-$i || ln -sf {app/com.discordapp.Discord,$XDG_RUNTIME_DIR}/discord-ipc-$i;
 done
 
-export PATH="/app/utils/gamescope/bin:$PATH"
+export PATH="/app/lib/extensions/vulkan/gamescope/bin:$PATH"
 export SRB2WADDIR=/app/extra
 
 if [ -z "$GAMESCOPE_ARGS" ]; then
