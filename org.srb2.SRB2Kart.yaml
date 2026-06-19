@@ -26,10 +26,10 @@ cleanup-commands:
   - mkdir -p /app/utils/gamescope
 
 cleanup:
-  - "/include"
-  - "/lib/cmake"
-  - "/lib/pkgconfig"
-  - "/share/man"
+  - /include
+  - /lib/cmake
+  - /lib/pkgconfig
+  - /share/man
   - "*.la"
   - "*.a"
 
@@ -41,9 +41,7 @@ modules:
     config-opts: 
       - -DCMAKE_INSTALL_LIBDIR=lib
     # cleanup:
-    #   - /include
     #   - /lib/*.so
-    #   - /lib/pkgconfig
     sources:
       - type: archive
         url: https://github.com/libgme/game-music-emu/releases/download/0.6.4/libgme-0.6.4-src.tar.gz
@@ -56,10 +54,6 @@ modules:
 
   - name: libmodplug
     buildsystem: autotools
-    cleanup:
-      - /include
-      - /lib/*.la
-      - /lib/pkgconfig
     sources:
       - type: archive
         url: https://sourceforge.net/projects/modplug-xmms/files/libmodplug/0.8.9.0/libmodplug-0.8.9.0.tar.gz
@@ -68,22 +62,6 @@ modules:
           type: anitya
           project-id: 5669
           url-template: https://sourceforge.net/projects/modplug-xmms/files/libmodplug/$version/libmodplug-$version.tar.gz
-
-  - name: sdl2-mixer
-    buildsystem: autotools
-    cleanup:
-      - /include
-      - /lib/*.la
-      - /lib/*.a
-      - /lib/pkgconfig
-    sources:
-      - type: archive
-        url: https://github.com/libsdl-org/SDL_mixer/releases/download/release-2.8.1/SDL2_mixer-2.8.1.tar.gz
-        sha256: cb760211b056bfe44f4a1e180cc7cb201137e4d1572f2002cc1be728efd22660
-        x-checker-data:
-          type: anitya
-          project-id: 4782
-          url-template: https://github.com/libsdl-org/SDL_mixer/releases/download/release-$version/SDL2_mixer-$version.tar.gz
 
   - name: rapidjson
     buildsystem: cmake-ninja
@@ -95,9 +73,6 @@ modules:
       - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
       - -DCMAKE_INSTALL_LIBDIR=lib
     cleanup:
-      - /include
-      - /lib/cmake
-      - /lib/pkgconfig
       - /share/doc
     # sources:
     #   - type: archive
@@ -123,8 +98,6 @@ modules:
       - -DBUILD_EXAMPLES=OFF
       - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
       - -DCMAKE_INSTALL_LIBDIR=lib
-    cleanup:
-      - /include
     sources:
       - type: git
         url: https://github.com/discord/discord-rpc.git
