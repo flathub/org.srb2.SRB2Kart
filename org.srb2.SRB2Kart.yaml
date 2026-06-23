@@ -63,6 +63,9 @@ modules:
           project-id: 5669
           url-template: https://sourceforge.net/projects/modplug-xmms/files/libmodplug/$version/libmodplug-$version.tar.gz
 
+  # NOTE: SDL2_mixer is rebuilt locally with libmodplug support to preserve XM module playback.
+  # The version provided by the Flathub runtime does not support XM music, so this duplication is intentional.
+  # This can be removed if the runtime SDL2_mixer gains XM support (e.g. via libmodplug or libxmp).
   - name: sdl2-mixer
     buildsystem: autotools
     sources:
